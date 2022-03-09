@@ -1,18 +1,18 @@
-let pirmas = document.getElementById('one');
-let antras = document.getElementById('two');
+const inputs = document.querySelectorAll('.input');
 
-pirmas.addEventListener('click', efektas);
-antras.addEventListener('click', efektasPass);
-
-function efektas() {
-  pirmas.classList.add('focus');
-  rem(antras);
-}
-function efektasPass() {
-  antras.classList.add('focus');
-  rem(pirmas);
+function focusFunc() {
+  let parent = this.parentNode.parentNode;
+  parent.classList.add('focus');
 }
 
-function rem(klase) {
-  klase.classList.remove('focus');
+function blurFunc() {
+  let parent = this.parentNode.parentNode;
+  if (this.value == '') {
+    parent.classList.remove('focus');
+  }
 }
+
+inputs.forEach((input) => {
+  input.addEventListener('focus', focusFunc);
+  input.addEventListener('blur', blurFunc);
+});
